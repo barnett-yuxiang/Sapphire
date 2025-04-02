@@ -20,6 +20,32 @@ body {
   overflow-y: auto;
 }
 
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.main-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+  filter: brightness(0) invert(0.8);
+}
+
+.centered-content p {
+  font-size: 14px;
+  font-weight: normal;
+  color: #cccccc;
+  margin: 0;
+}
+
+h1 {
+  font-size: 14px;
+  font-weight: normal;
+}
+
 .footer {
   display: flex;
   padding: 12px;
