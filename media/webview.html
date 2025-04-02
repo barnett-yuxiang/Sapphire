@@ -8,90 +8,112 @@
       body {
         margin: 0;
         padding: 0;
-        height: 100vh;
+        background-color: #1e1e1e;
+        color: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+          Arial, sans-serif;
         display: flex;
         flex-direction: column;
-        background-color: #1e1e1e;
-        color: white;
-        font-family: sans-serif;
+        height: 100vh;
+        font-size: 13px;
       }
 
-      .content {
+      .main {
         flex: 1;
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 20px;
+        justify-content: center;
+        padding: 16px;
+        overflow-y: auto;
       }
 
-      .chat-input-bar {
+      .footer {
         display: flex;
-        padding: 8px;
-        margin: 8px;
-        border: 1px solid #444;
-        border-radius: 8px;
+        padding: 12px;
         background-color: #1e1e1e;
-        transition: border-color 0.2s ease;
+        border-top: 1px solid #333;
       }
 
-      .chat-input-bar:focus-within {
-        border-color: #4fd1c5; /* 聚焦时变为青蓝色 */
-      }
-
-      .chat-input {
+      .input-container {
         flex: 1;
+        display: flex;
+        align-items: flex-end;
+        border: 1px solid #00bcd4;
+        border-radius: 10px;
         padding: 8px;
-        border-radius: 6px;
-        border: none;
-        font-size: 14px;
-        background-color: #2b2b2b;
-        color: white;
-        outline: none;
       }
 
-      .chat-input::placeholder {
-        color: #888;
+      textarea {
+        flex: 1;
+        background-color: #252526;
+        color: #d4d4d4;
+        font-size: 13px;
+        line-height: 1.5;
+        resize: none;
+        border: 1px solid #ff9900;
+        border-radius: 8px;
+        padding: 8px;
+        max-height: 180px;
+        overflow-y: auto;
+        outline: none;
+        font-family: inherit;
       }
 
       .send-button {
+        margin-left: 10px;
         background: none;
         border: none;
-        margin-left: 8px;
         cursor: pointer;
+        padding: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
       }
 
-      .send-icon {
-        stroke: #ccc;
+      .send-button img {
+        width: 20px;
+        height: 20px;
+        filter: brightness(90%);
       }
 
-      .send-button:hover .send-icon {
-        stroke: white;
+      .send-button:hover img {
+        filter: brightness(120%);
       }
     </style>
   </head>
   <body>
-    <div class="content">Sapphire is powered by AI</div>
-
-    <div class="chat-input-bar">
-      <input class="chat-input" type="text" placeholder="Ask something..." />
-      <button class="send-button" aria-label="Send">
-        <svg
-          class="send-icon"
-          viewBox="0 0 24 24"
-          width="20"
-          height="20"
-          fill="none"
-          stroke="#ccc"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <polyline points="4 4, 20 12, 4 20, 8 12, 4 4"></polyline>
-        </svg>
-      </button>
+    <div class="main">
+      <h1>Sapphire is powered by AI</h1>
     </div>
+    <div class="footer">
+      <div class="input-container">
+        <textarea
+          id="input"
+          rows="1"
+          placeholder="Ask something..."
+          oninput="autoGrow(this)"
+        ></textarea>
+        <button class="send-button" onclick="sendMessage()">
+          <img src="{{SEND_ICON_URI}}" alt="Send" />
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function autoGrow(textarea) {
+        textarea.style.height = "auto";
+        textarea.style.height = Math.min(textarea.scrollHeight, 180) + "px";
+      }
+
+      function sendMessage() {
+        const textarea = document.getElementById("input");
+        const text = textarea.value.trim();
+        if (text) {
+          console.log("[Send]", text);
+          textarea.value = "";
+          autoGrow(textarea);
+        }
+      }
+    </script>
   </body>
 </html>

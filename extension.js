@@ -32,11 +32,23 @@ class SapphireViewProvider {
       "media",
       "webview.html"
     );
-    const htmlContent = fs.readFileSync(htmlPath, "utf8");
+    let htmlContent = fs.readFileSync(htmlPath, "utf8");
+
+    const sendIconUri = webviewView.webview.asWebviewUri(
+      vscode.Uri.joinPath(this.context.extensionUri, "media", "send.svg")
+    );
 
     webviewView.webview.options = {
       enableScripts: true,
+      localResourceRoots: [
+        vscode.Uri.joinPath(this.context.extensionUri, "media"),
+      ],
     };
+
+    htmlContent = htmlContent.replace(
+      "{{SEND_ICON_URI}}",
+      sendIconUri.toString()
+    );
 
     webviewView.webview.html = htmlContent;
   }
