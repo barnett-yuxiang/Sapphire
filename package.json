@@ -2,7 +2,7 @@
   "name": "sapphire",
   "displayName": "Sapphire",
   "description": "A minimal VSCode extension with a custom panel",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.98.0"
   },
@@ -31,7 +31,8 @@
         {
           "id": "sapphireView",
           "name": "Sapphire Panel",
-          "icon": "media/icon.svg"
+          "icon": "media/icon.svg",
+          "type": "webview"
         }
       ]
     }

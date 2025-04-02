@@ -4,26 +4,40 @@ const fs = require("fs");
 
 function activate(context) {
   context.subscriptions.push(
-    vscode.commands.registerCommand("sapphire.start", () => {
-      const panel = vscode.window.createWebviewPanel(
-        "sapphirePanel",
-        "Sapphire",
-        vscode.ViewColumn.One,
-        {
-          enableScripts: true,
-        }
-      );
+    vscode.window.registerWebviewViewProvider(
+      "sapphireView",
+      new SapphireViewProvider(context)
+    )
+  );
 
-      // 加载 media/webview.html 文件
-      const webviewPath = path.join(
-        context.extensionPath,
-        "media",
-        "webview.html"
+  context.subscriptions.push(
+    vscode.commands.registerCommand("sapphire.start", () => {
+      vscode.window.showInformationMessage(
+        "Sapphire is already shown in the side panel."
       );
-      const webviewContent = fs.readFileSync(webviewPath, "utf8");
-      panel.webview.html = webviewContent;
     })
   );
+}
+
+class SapphireViewProvider {
+  constructor(context) {
+    this.context = context;
+  }
+
+  resolveWebviewView(webviewView, context, _token) {
+    const htmlPath = path.join(
+      this.context.extensionPath,
+      "media",
+      "webview.html"
+    );
+    const htmlContent = fs.readFileSync(htmlPath, "utf8");
+
+    webviewView.webview.options = {
+      enableScripts: true,
+    };
+
+    webviewView.webview.html = htmlContent;
+  }
 }
 
 function deactivate() {}
