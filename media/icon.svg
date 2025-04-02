@@ -1,4 +1,10 @@
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="50,10 85,30 85,70 50,90 15,70 15,30" fill="#1976D2" stroke="#64B5F6" stroke-width="4"/>
-  <circle cx="50" cy="50" r="15" fill="#82B1FF" />
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="url(#gradient)" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="M22 154 92.51 28.224c1.529-2.726 5.451-2.726 6.98 0L170 154M96 87l37 67m-37 0-18.5-33.5"/>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6C5CE7" />
+      <stop offset="50%" stop-color="#00B4D8" />
+      <stop offset="100%" stop-color="#FF7979" />
+    </linearGradient>
+  </defs>
 </svg>
