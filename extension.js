@@ -3,6 +3,8 @@ const path = require("path");
 const fs = require("fs");
 
 function activate(context) {
+  console.log("[Sapphire] Extension activated");
+
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider(
       "sapphireView",
