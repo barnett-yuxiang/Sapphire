@@ -30,7 +30,7 @@
       "sapphireViewContainer": [
         {
           "id": "sapphireView",
-          "name": "Sapphire Panel",
+          "name": "Chat",
           "icon": "media/icon.svg",
           "type": "webview"
         }
