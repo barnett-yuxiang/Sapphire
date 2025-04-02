@@ -1,25 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sapphire</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #1e1e1e;
-      color: white;
-      font-family: sans-serif;
-    }
-    h1 {
-      font-size: 24px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Sapphire is powered by AI</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sapphire</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: #1e1e1e;
+        color: white;
+        font-family: sans-serif;
+      }
+
+      .content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+      }
+
+      .chat-input-bar {
+        display: flex;
+        padding: 8px;
+        margin: 8px;
+        border: 1px solid #444;
+        border-radius: 8px;
+        background-color: #1e1e1e;
+        transition: border-color 0.2s ease;
+      }
+
+      .chat-input-bar:focus-within {
+        border-color: #4fd1c5; /* 聚焦时变为青蓝色 */
+      }
+
+      .chat-input {
+        flex: 1;
+        padding: 8px;
+        border-radius: 6px;
+        border: none;
+        font-size: 14px;
+        background-color: #2b2b2b;
+        color: white;
+        outline: none;
+      }
+
+      .chat-input::placeholder {
+        color: #888;
+      }
+
+      .send-button {
+        background: none;
+        border: none;
+        margin-left: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .send-icon {
+        stroke: #ccc;
+      }
+
+      .send-button:hover .send-icon {
+        stroke: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">Sapphire is powered by AI</div>
+
+    <div class="chat-input-bar">
+      <input class="chat-input" type="text" placeholder="Ask something..." />
+      <button class="send-button" aria-label="Send">
+        <svg
+          class="send-icon"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="#ccc"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="4 4, 20 12, 4 20, 8 12, 4 4"></polyline>
+        </svg>
+      </button>
+    </div>
+  </body>
 </html>
