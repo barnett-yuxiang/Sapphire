@@ -2,15 +2,12 @@
   "name": "sapphire",
   "displayName": "Sapphire",
   "description": "A minimal VSCode extension with a custom panel",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.98.0"
   },
   "categories": [
     "Other"
-  ],
-  "activationEvents": [
-    "onCommand:sapphire.start"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -19,7 +16,25 @@
         "command": "sapphire.start",
         "title": "Sapphire: Open Panel"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "sapphireViewContainer",
+          "title": "Sapphire",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "sapphireViewContainer": [
+        {
+          "id": "sapphireView",
+          "name": "Sapphire Panel",
+          "icon": "media/icon.svg"
+        }
+      ]
+    }
   },
   "scripts": {},
   "devDependencies": {}
