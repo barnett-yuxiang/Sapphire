@@ -1,0 +1,7 @@
+# Files and directories to be ignored by Git
+
+# Qodo configuration/cache directory
+.qodo
+
+# macOS system file that stores folder view settings
+.DS_Store
