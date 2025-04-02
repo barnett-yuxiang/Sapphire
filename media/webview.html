@@ -37,47 +37,145 @@
       .input-container {
         flex: 1;
         display: flex;
-        align-items: flex-end;
-        border: 1px solid #00bcd4;
-        border-radius: 10px;
-        padding: 8px;
+        flex-direction: column;
+        background-color: #252526;
+        border-radius: 8px;
+        padding: 10px;
+        position: relative;
+        border: 1px solid transparent;
+        transition: border-color 0.2s ease;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .input-container:focus-within {
+        border: 1px solid #8957e5;
+        box-shadow: 0 0 0 1px #8957e5;
+      }
+
+      .textarea-wrapper {
+        position: relative;
+        margin-bottom: 10px;
+      }
+
+      .textarea-highlight {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid #ff9800;
+        border-radius: 4px;
+        width: 40%;
+        pointer-events: none;
+        display: none;
       }
 
       textarea {
-        flex: 1;
-        background-color: #252526;
+        width: 100%;
+        background-color: transparent;
         color: #d4d4d4;
-        font-size: 13px;
+        font-size: 14px;
         line-height: 1.5;
         resize: none;
-        border: 1px solid #ff9900;
-        border-radius: 8px;
-        padding: 8px;
+        border: none;
+        padding: 0;
+        min-height: 24px;
         max-height: 180px;
         overflow-y: auto;
         outline: none;
         font-family: inherit;
+        white-space: pre;
+        overflow-wrap: normal;
+        box-sizing: border-box;
+      }
+
+      .controls-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .action-buttons {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background-color: #252526;
+        border: 1px solid #444;
+        border-radius: 4px;
+        color: #d4d4d4;
+        margin-right: 5px;
+        padding: 6px 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+      }
+
+      .action-button:first-child {
+        padding: 6px 8px;
+      }
+
+      .action-button img {
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
       }
 
       .send-button {
-        margin-left: 10px;
         background: none;
         border: none;
         cursor: pointer;
-        padding: 4px;
+        padding: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
       }
 
       .send-button img {
-        width: 20px;
-        height: 20px;
-        filter: brightness(90%);
+        width: 24px;
+        height: 24px;
       }
 
       .send-button:hover img {
         filter: brightness(120%);
+      }
+
+      .footer-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #888;
+        margin-top: 10px;
+        align-items: center;
+      }
+
+      .model-info {
+        display: flex;
+        align-items: center;
+      }
+
+      .model-dropdown {
+        margin-right: 5px;
+      }
+
+      .shortcuts-right {
+        display: flex;
+      }
+
+      .shortcut {
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      .shortcut-key {
+        background-color: #333;
+        border-radius: 3px;
+        padding: 1px 4px;
+        margin-right: 4px;
       }
     </style>
   </head>
@@ -87,22 +185,58 @@
     </div>
     <div class="footer">
       <div class="input-container">
-        <textarea
-          id="input"
-          rows="1"
-          placeholder="Ask something..."
-          oninput="autoGrow(this)"
-        ></textarea>
-        <button class="send-button" onclick="sendMessage()">
-          <img src="{{SEND_ICON_URI}}" alt="Send" />
-        </button>
+        <div class="textarea-wrapper">
+          <textarea
+            id="input"
+            rows="1"
+            placeholder="Ask me anything. Type @ to add context."
+            oninput="autoGrow(this)"
+            spellcheck="false"
+          ></textarea>
+          <div class="textarea-highlight" id="highlight"></div>
+        </div>
+
+        <div class="controls-row">
+          <div class="action-buttons">
+            <button class="action-button">
+              <span>/</span>
+            </button>
+            <button class="action-button">
+              <span>⊙ Select focus</span>
+            </button>
+            <button class="action-button">
+              <span>⟨⟩ Add context</span>
+            </button>
+          </div>
+          <button class="send-button" onclick="sendMessage()">
+            <img src="{{SEND_ICON_URI}}" alt="Send" />
+          </button>
+        </div>
+
+        <div class="footer-row">
+          <div class="model-info">
+            <span class="model-dropdown">▼</span>
+            <span>Claude 3.7 Sonnet</span>
+          </div>
+          <div class="shortcuts-right">
+            <div class="shortcut">
+              <span class="shortcut-key">⇧</span>
+              <span class="shortcut-key">↵</span>
+              <span>New Line</span>
+            </div>
+            <div class="shortcut">
+              <span class="shortcut-key">↵</span>
+              <span>Send</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <script>
       function autoGrow(textarea) {
         textarea.style.height = "auto";
-        textarea.style.height = Math.min(textarea.scrollHeight, 180) + "px";
+        textarea.style.height = Math.min(Math.max(textarea.scrollHeight, 24), 180) + "px";
       }
 
       function sendMessage() {
