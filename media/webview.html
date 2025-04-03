@@ -8,9 +8,13 @@
   </head>
   <body>
     <div class="main">
-      <div class="centered-content">
+      <div id="welcome-view" class="centered-content">
         <img src="{{ICON_URI}}" alt="Sapphire Icon" class="main-icon" />
         <p>Sapphire is powered by AI</p>
+      </div>
+
+      <div id="conversation-view" class="conversation-container" style="display: none;">
+        <!-- Conversation messages will be added here -->
       </div>
 
       <div class="input-dialog">
@@ -70,15 +74,53 @@
         textarea.style.height = Math.min(Math.max(textarea.scrollHeight, 24), 180) + "px";
       }
 
+      function addMessage(text, isUser = true) {
+        const conversationView = document.getElementById('conversation-view');
+
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${isUser ? 'message-user' : 'message-assistant'}`;
+
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        contentDiv.textContent = text;
+
+        messageDiv.appendChild(contentDiv);
+        conversationView.appendChild(messageDiv);
+
+        // Scroll to bottom
+        conversationView.scrollTop = conversationView.scrollHeight;
+      }
+
       function sendMessage() {
         const textarea = document.getElementById("input");
         const text = textarea.value.trim();
         if (text) {
           console.log("[Send]", text);
+
+          // Show conversation view and hide welcome view
+          document.getElementById('welcome-view').style.display = 'none';
+          document.getElementById('conversation-view').style.display = 'block';
+
+          // Add user message to conversation
+          addMessage(text, true);
+
+          // Simulate assistant response (in real implementation, this would come from the extension)
+          setTimeout(() => {
+            addMessage("I'm Sapphire, powered by Claude 3.7 Sonnet. How can I help you today?", false);
+          }, 1000);
+
           textarea.value = "";
           autoGrow(textarea);
         }
       }
+
+      // Listen for Enter key to send message
+      document.getElementById('input').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
     </script>
   </body>
 </html>
