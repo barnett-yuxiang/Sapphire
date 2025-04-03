@@ -14,10 +14,12 @@ body {
 .main {
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 16px;
   overflow-y: auto;
+  position: relative;
 }
 
 .centered-content {
@@ -25,6 +27,7 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin: auto 0;
 }
 
 .main-icon {
@@ -46,11 +49,17 @@ h1 {
   font-weight: normal;
 }
 
-.footer {
-  display: flex;
+.input-dialog {
+  width: 100%;
   padding: 12px;
   background-color: #1e1e1e;
   border-top: 1px solid #333;
+  border-radius: 8px;
+  margin-top: auto;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  align-self: flex-end;
+  box-sizing: border-box;
 }
 
 .input-container {
@@ -162,7 +171,7 @@ textarea {
   filter: brightness(120%);
 }
 
-.footer-row {
+.dialog-footer-row {
   display: flex;
   justify-content: space-between;
   font-size: 11px;
@@ -174,20 +183,36 @@ textarea {
 .model-info {
   display: flex;
   align-items: center;
+  cursor: pointer;
+  background-color: #333;
+  border-radius: 4px;
+  padding: 4px 8px;
+  transition: background-color 0.2s;
+  user-select: none;
+  min-width: 150px;
+}
+
+.model-info:hover {
+  background-color: #444;
 }
 
 .model-dropdown {
-  margin-right: 5px;
+  margin-left: 6px;
+  font-size: 9px;
+  color: #999;
 }
 
 .shortcuts-right {
   display: flex;
+  justify-content: flex-end;
+  flex: 1;
 }
 
 .shortcut {
   margin-left: 10px;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 .shortcut-key {

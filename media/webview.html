@@ -12,51 +12,52 @@
         <img src="{{ICON_URI}}" alt="Sapphire Icon" class="main-icon" />
         <p>Sapphire is powered by AI</p>
       </div>
-    </div>
-    <div class="footer">
-      <div class="input-container">
-        <div class="textarea-wrapper">
-          <textarea
-            id="input"
-            rows="1"
-            placeholder="Ask me anything. Type @ to add context."
-            oninput="autoGrow(this)"
-            spellcheck="false"
-          ></textarea>
-          <div class="textarea-highlight" id="highlight"></div>
-        </div>
 
-        <div class="controls-row">
-          <div class="action-buttons">
-            <button class="action-button">
-              <span>/</span>
-            </button>
-            <button class="action-button">
-              <span>⊙ Select focus</span>
-            </button>
-            <button class="action-button">
-              <span>⟨⟩ Add context</span>
-            </button>
+      <div class="input-dialog">
+        <div class="input-container">
+          <div class="textarea-wrapper">
+            <textarea
+              id="input"
+              rows="1"
+              placeholder="Ask me anything. Type @ to add context."
+              oninput="autoGrow(this)"
+              spellcheck="false"
+            ></textarea>
+            <div class="textarea-highlight" id="highlight"></div>
           </div>
-          <button class="send-button" onclick="sendMessage()">
-            <img src="{{SEND_ICON_URI}}" alt="Send" />
-          </button>
-        </div>
 
-        <div class="footer-row">
-          <div class="model-info">
-            <span class="model-dropdown">▼</span>
-            <span>Claude 3.7 Sonnet</span>
-          </div>
-          <div class="shortcuts-right">
-            <div class="shortcut">
-              <span class="shortcut-key">⇧</span>
-              <span class="shortcut-key">↵</span>
-              <span>New Line</span>
+          <div class="controls-row">
+            <div class="action-buttons">
+              <button class="action-button">
+                <span>/</span>
+              </button>
+              <button class="action-button">
+                <span>⊙ Select focus</span>
+              </button>
+              <button class="action-button">
+                <span>⟨⟩ Add context</span>
+              </button>
             </div>
-            <div class="shortcut">
-              <span class="shortcut-key">↵</span>
-              <span>Send</span>
+            <button class="send-button" onclick="sendMessage()">
+              <img src="{{SEND_ICON_URI}}" alt="Send" />
+            </button>
+          </div>
+
+          <div class="dialog-footer-row">
+            <div class="model-info">
+              <span>Claude 3.7 Sonnet</span>
+              <span class="model-dropdown">▼</span>
+            </div>
+            <div class="shortcuts-right">
+              <div class="shortcut">
+                <span class="shortcut-key">⇧</span>
+                <span class="shortcut-key">↵</span>
+                <span>New Line</span>
+              </div>
+              <div class="shortcut">
+                <span class="shortcut-key">↵</span>
+                <span>Send</span>
+              </div>
             </div>
           </div>
         </div>
